@@ -1,0 +1,25 @@
+<mat-card class="form">
+  <div class="search-box">
+    <mat-form-field appearance="outline">
+      <mat-label>Марка</mat-label>
+      <input matInput placeholder="BMW" [(ngModel)]="brand">
+    </mat-form-field>
+    <button mat-button class="btn-search" (click)="filterCarList(brand)">Найти</button>
+  </div>
+  <h3 class="db-statistic">В базе {{carsLenghtList}} машин(ы)</h3>
+  <table>
+  <tr>
+    <td *ngFor="let Colums of displayedColumns; let i = index">{{Colums}}</td>
+  </tr>
+  <tr *ngFor="let car of cars; let i = index">
+    <td>{{i + 1}}</td>
+    <td>{{car.brand}}</td>
+    <td>{{car.color}}</td>
+    <td>{{car.plateNumber}}</td>
+    <td>{{car.productYear}}</td>
+    <td class="btn">
+      <button mat-button class="btn" (click)="deleteCar(car.id)">&#10006;</button>
+    </td>
+  </tr>
+  </table>
+</mat-card>

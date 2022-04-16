@@ -1,0 +1,28 @@
+  <mat-card class="form">
+    <mat-card-title class="title">Форма добавления машины</mat-card-title>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Марка</mat-label>
+      <input matInput placeholder="BMW" [(ngModel)]="brand">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Цвет</mat-label >
+      <input matInput placeholder="Белый" [(ngModel)]="color">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Номер</mat-label>
+      <input matInput placeholder="А999АА" [(ngModel)]="plateNumber">
+    </mat-form-field>
+
+    <mat-form-field appearance="outline">
+      <mat-label>Год выпуска</mat-label>
+      <input matInput type="number" placeholder="1999" [(ngModel)]="productYear">
+    </mat-form-field>
+
+    <mat-card-actions>
+      <button mat-flat-button color="primary" class="btn" (click)="addCar()">Добавить</button>
+      <button mat-flat-button color="primary" class="btn" (click)="getAllList()">Показать все</button>
+    </mat-card-actions>
+  </mat-card>
