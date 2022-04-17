@@ -9,7 +9,7 @@
 - Цвет;
 - Год выпуска.
 
-## Стэк:
+## Стэк технологий:
 Frontend: 
 - Angular
 - Angular Material
