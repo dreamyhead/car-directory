@@ -4,6 +4,9 @@ using Project1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
+builder.Logging.ClearProviders();
+builder.Logging.AddConsole();
+
 builder.Services.AddControllers();
 builder.Services.Configure<CarItemsDatabaseSettings>(
     builder.Configuration.GetSection("CarItemsDatabase"));

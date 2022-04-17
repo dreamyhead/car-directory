@@ -17,26 +17,33 @@ namespace Project1.Controllers
     {
 
         private readonly CarsService _carsService;
+        private readonly ILogger _logger;
 
-        public CarItemsController(CarsService carsService)
+        public CarItemsController(CarsService carsService, ILogger<CarItemsController> logger)
         {
             _carsService = carsService;
+            _logger = logger;
         }
 
         // GET: /CarItems
         [HttpGet]
-        public async Task<List<Car>> Get() =>
-            await _carsService.GetAsync();
+        public async Task<List<Car>> Get() {
+            _logger.LogInformation("GET: /caritems");
+            return await _carsService.GetAsync();
+        }
 
         // GET: /CarItems/BMW
         [HttpGet("{brand}")]
-        public async Task<List<Car>> Get(string brand) => 
-            await _carsService.GetAsync(brand);
+        public async Task<List<Car>> Get(string brand) {
+            _logger.LogInformation("GET: /caritems/brand");
+            return await _carsService.GetAsync(brand);
+        }
 
         // POST: /CarItems
         [HttpPost]
         public async Task<IActionResult> Post(Car newCar)
         {
+            _logger.LogInformation("POST: /caritems");
             await _carsService.CreateAsync(newCar);
 
             return CreatedAtAction(nameof(Get), new { id = newCar.Id }, newCar);
@@ -46,6 +53,7 @@ namespace Project1.Controllers
         [HttpDelete("{id:length(24)}")]
         public async Task<IActionResult> Delete(string id)
         {
+            _logger.LogInformation("DELETE: /caritems/{id}");
             var book = await _carsService.GetAsync(id);
 
             if (book is null)
