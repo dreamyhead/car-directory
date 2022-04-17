@@ -1,13 +1,13 @@
-using Microsoft.EntityFrameworkCore;
 using Project1.Models;
-
+using Microsoft.EntityFrameworkCore;
+using Project1.Services;
 
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddControllers();
-builder.Services.AddDbContext<CarContext>(opt =>
-    opt.UseInMemoryDatabase("CarList"));
-
+builder.Services.Configure<CarItemsDatabaseSettings>(
+    builder.Configuration.GetSection("CarItemsDatabase"));
+builder.Services.AddSingleton<CarsService>();
 var app = builder.Build();
 
 if (builder.Environment.IsDevelopment())

@@ -7,66 +7,55 @@ using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.EntityFrameworkCore;
 using Project1.Models;
+using Project1.Services;
 
 namespace Project1.Controllers
 {
-    [Route("[controller]")]
     [ApiController]
+    [Route("[controller]")]
     public class CarItemsController : ControllerBase
     {
-        private readonly CarContext _context;
 
-        public CarItemsController(CarContext context)
+        private readonly CarsService _carsService;
+
+        public CarItemsController(CarsService carsService)
         {
-            _context = context;
+            _carsService = carsService;
         }
 
         // GET: /CarItems
         [HttpGet]
-        public async Task<ActionResult<IEnumerable<Car>>> GetCarItems()
-        {
-            return await _context.Cars.ToListAsync();
-        }
+        public async Task<List<Car>> Get() =>
+            await _carsService.GetAsync();
 
         // GET: /CarItems/BMW
         [HttpGet("{brand}")]
-        public async Task<List<Car>> GetCarItems(string brand)
-        {
-            var carItems = await _context.Cars
-                .Where(b => b.Brand.Contains(brand))
-                .ToListAsync();
-            return carItems;
-        }
+        public async Task<List<Car>> Get(string brand) => 
+            await _carsService.GetAsync(brand);
 
         // POST: /CarItems
         [HttpPost]
-        public async Task<ActionResult<Car>> PostCarItems(Car carItems)
+        public async Task<IActionResult> Post(Car newCar)
         {
-            _context.Cars.Add(carItems);
-            await _context.SaveChangesAsync();
+            await _carsService.CreateAsync(newCar);
 
-            return CreatedAtAction(nameof(GetCarItems), new { id = carItems.Id }, carItems);
+            return CreatedAtAction(nameof(Get), new { id = newCar.Id }, newCar);
         }
 
         // DELETE: /CarItems/5
-        [HttpDelete("{id}")]
-        public async Task<IActionResult> DeleteCarItems(long id)
+        [HttpDelete("{id:length(24)}")]
+        public async Task<IActionResult> Delete(string id)
         {
-            var carItems = await _context.Cars.FindAsync(id);
-            if (carItems == null)
+            var book = await _carsService.GetAsync(id);
+
+            if (book is null)
             {
                 return NotFound();
             }
 
-            _context.Cars.Remove(carItems);
-            await _context.SaveChangesAsync();
+            await _carsService.RemoveAsync(id);
 
             return NoContent();
-        }
-
-        private bool CarItemsExists(long id)
-        {
-            return _context.Cars.Any(e => e.Id == id);
         }
     }
 }
