@@ -12,6 +12,8 @@
 ## Стэк:
 Frontend: 
 - Angular
+- Angular Material
+- RxJs
 
 Backend: 
 - ASP.NET Core (version 6)
