@@ -31,7 +31,7 @@ export class FormComponent implements OnInit {
       ]),
       plateNumber: new FormControl('', [
         Validators.minLength(7),
-        Validators.minLength(9)
+        Validators.maxLength(9)
       ]),
       productYear: new FormControl(null, [
         Validators.minLength(4),
