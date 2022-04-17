@@ -45,26 +45,6 @@ export class FormComponent implements OnInit {
       .subscribe(car => this.eventCarItem.emit(car))
     this.form.reset();
   }
-  // addCar() {
-  //   if (!this.brand.trim() || !this.color.trim() || !this.plateNumber.trim()) {
-  //     return;
-  //   }
-
-  //   const newCar: Cars = {
-  //     brand: this.brand,
-  //     color: this.color,
-  //     plateNumber: this.plateNumber,
-  //     productYear: this.productYear,
-  //   }
-
-  //   this.appService.addCarInList(newCar)
-  //     .subscribe(car => {
-  //       console.log(car);
-  //       this.eventCarItem.emit(car);
-  //       this.brand = this.color = this.plateNumber = '';
-  //       this.productYear = 0;
-  //     })
-  // }
 
   getAllList() {
     this.appService.getAllList()
