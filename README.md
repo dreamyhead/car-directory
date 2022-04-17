@@ -9,6 +9,12 @@
 - Цвет;
 - Год выпуска.
 
+## Стэк:
+Frontend: 
+- Angular
+Backend: 
+- ASP.NET Core (version 6)
+
 ## Описание API:
 
 1. Список всех возвращаемых объектов:
