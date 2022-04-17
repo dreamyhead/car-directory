@@ -9,4 +9,8 @@
 - Цвет;
 - Год выпуска.
 
-## Features
+## Описание API:
+
+```sh
+localhost:44406/caritems
+```
