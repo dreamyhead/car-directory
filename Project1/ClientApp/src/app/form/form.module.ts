@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { MatCardModule } from '@angular/material/card';
 import { MatInputModule } from '@angular/material/input';
@@ -19,6 +19,7 @@ import { FormComponent } from './form.component';
     MatInputModule,
     MatButtonModule,
     MatFormFieldModule,
+    ReactiveFormsModule
   ],
   exports: [
     FormComponent,
