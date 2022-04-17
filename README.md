@@ -12,6 +12,7 @@
 ## Стэк:
 Frontend: 
 - Angular
+
 Backend: 
 - ASP.NET Core (version 6)
 
