@@ -22,6 +22,9 @@ Frontend:
 Backend: 
 - ASP.NET Core (version 6)
 
+DataBase:
+- MongoDB
+
 ## Описание API:
 
 1. Список всех возвращаемых объектов:
